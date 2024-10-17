@@ -94,10 +94,18 @@ CREATE TABLE IF NOT EXISTS `sym64michael`.`user` (
   `fullname` VARCHAR(150) NULL,
   `uniqid` VARCHAR(60) NOT NULL,
   `email` VARCHAR(180) NOT NULL,
-  `actvate` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  `activate` TINYINT UNSIGNED NOT NULL DEFAULT 0-- boolean false
+    ,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `UNIQ_IDENTIFIER_USERNAME` (`username` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
+```
+
+### Créez une Entité `Article` avec la commande suivante :
+
+```bash
+php bin/console make:entity Article
+
 ```
