@@ -109,3 +109,28 @@ COLLATE = utf8mb4_unicode_ci;
 php bin/console make:entity Article
 
 ```
+
+Pour obtenir en base de données la table suivante :
+
+```mysql
+-- -----------------------------------------------------
+-- Table `sym64michael`.`article`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sym64michael`.`article` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT UNSIGNED NOT NULL,
+  `title` VARCHAR(160) NOT NULL,
+  `title_slug` VARCHAR(162) NOT NULL,
+  `text` LONGTEXT NOT NULL,
+  `article_date_create` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `article_date_posted` DATETIME NULL DEFAULT NULL,
+  `published` TINYINT(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  INDEX `IDX_23A0E66A76ED395` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `FK_23A0E66A76ED395`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `sym64michael`.`user` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+```
