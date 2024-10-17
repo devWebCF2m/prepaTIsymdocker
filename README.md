@@ -134,3 +134,65 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 ```
+
+### Créez une Entité `Section` avec la commande suivante :
+
+```bash
+php bin/console make:entity
+```
+
+Pour obtenir la table suivante en base de données :
+
+```mysql
+-- -----------------------------------------------------
+-- Table `sym64michael`.`section`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sym64michael`.`section` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `section_title` VARCHAR(100) NOT NULL,
+  `section_slug` VARCHAR(105) NOT NULL,
+  `section_detail` VARCHAR(500) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+```
+
+### Créez d'un `manytomany` de `Article` vers `Section` :
+
+```bash
+php bin/console make:entity Article
+```
+
+Puid migraté la table :
+
+```bash
+php bin/console make:migration
+# puis
+php bin/console doctrine:migrations:migrate
+```
+
+### Mysql m2m
+
+```mysql
+-- -----------------------------------------------------
+-- Table `sym64michael`.`article_section`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sym64michael`.`article_section` (
+  `article_id` INT UNSIGNED NOT NULL,
+  `section_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`article_id`, `section_id`),
+  INDEX `IDX_C0A13E587294869C` (`article_id` ASC) VISIBLE,
+  INDEX `IDX_C0A13E58D823E37A` (`section_id` ASC) VISIBLE,
+  CONSTRAINT `FK_C0A13E587294869C`
+    FOREIGN KEY (`article_id`)
+    REFERENCES `sym64michael`.`article` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `FK_C0A13E58D823E37A`
+    FOREIGN KEY (`section_id`)
+    REFERENCES `sym64michael`.`section` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+```

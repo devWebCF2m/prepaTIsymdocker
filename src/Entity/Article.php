@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +37,17 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $User = null;
+
+    /**
+     * @var Collection<int, Section>
+     */
+    #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'articles')]
+    private Collection $sections;
+
+    public function __construct()
+    {
+        $this->sections = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +134,30 @@ class Article
     public function setUser(?User $User): static
     {
         $this->User = $User;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Section>
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): static
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections->add($section);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): static
+    {
+        $this->sections->removeElement($section);
 
         return $this;
     }
