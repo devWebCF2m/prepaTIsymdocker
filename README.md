@@ -46,7 +46,36 @@ php bin/console doctrine:database:create
 ### Créez un contrôleur avec une méthode `index` pour la majeure partie du frontend de votre application
 
 ```bash
-php bin/console make:controller MainController
+php bin/console make:controller
 ```
 
 Donnez le nom `homepage` à cet index et la racine de votre site.
+
+### Créez un User avec la commande suivante :
+
+```bash
+
+ php bin/console make:user
+
+ The name of the security user class (e.g. User) [User]:
+ >
+
+ Do you want to store user data in the database (via Doctrine)? (yes/no) [yes]:
+ >
+
+ Enter a property name that will be the unique "display" name for the user (e.g. email, username, uuid) [email]:
+ > username
+
+ Will this app need to hash/check user passwords? Choose No if passwords are not needed or will be checked/hashed by some other system (e.g. a single sign-on server).   
+
+ Does this app need to hash/check user passwords? (yes/no) [yes]:
+
+```
+
+Vous pouvez maintenant créer la table de votre User avec la commande suivante :
+
+```bash
+php bin/console make:migration
+# puis 
+php bin/console doctrine:migrations:migrate
+```
