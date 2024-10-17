@@ -79,3 +79,25 @@ php bin/console make:migration
 # puis 
 php bin/console doctrine:migrations:migrate
 ```
+
+Il faut ensuite faire un make:entity pour compléter l'entité `User` pour obtenir les champs suivants dans la table `user` :
+
+```mysql
+-- -----------------------------------------------------
+-- Table `sym64michael`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `sym64michael`.`user` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(180) NOT NULL,
+  `roles` JSON NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `fullname` VARCHAR(150) NULL,
+  `uniqid` VARCHAR(60) NOT NULL,
+  `email` VARCHAR(180) NOT NULL,
+  `actvate` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `UNIQ_IDENTIFIER_USERNAME` (`username` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+```
