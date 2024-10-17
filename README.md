@@ -164,7 +164,7 @@ COLLATE = utf8mb4_unicode_ci;
 php bin/console make:entity Article
 ```
 
-Puid migraté la table :
+Puis migration la table :
 
 ```bash
 php bin/console make:migration
