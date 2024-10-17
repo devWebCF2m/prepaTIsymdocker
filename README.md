@@ -25,7 +25,8 @@ Créez un répertoire sur github avec le nom `sym64{Votre-prénom}` et envoyer v
 
 ```bash
 DB_TYPE="mysql"
-DB_NAME="sym64{Votre-prénom}" // Remplacez {Votre-prénom} par votre prénom dans majuscules et sans accent
+DB_NAME="sym64{Votre-prénom}" # Remplacez {Votre-prénom} par votre 
+# prénom dans majuscules et sans accent
 DB_HOST="localhost"
 DB_PORT=3306
 DB_USER="root"
