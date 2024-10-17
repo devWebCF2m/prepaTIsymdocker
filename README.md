@@ -25,7 +25,8 @@ Créez un répertoire sur github avec le nom `sym64{Votre-prénom}` et envoyer v
 
 ```bash
 DB_TYPE="mysql"
-DB_NAME="sym64{Votre-prénom}" # Remplacez {Votre-prénom} par votre 
+# DB_NAME="sym64{Votre-prénom}" # Remplacez {Votre-prénom} par votre 
+DB_NAME="sym64michael"
 # prénom dans majuscules et sans accent
 DB_HOST="localhost"
 DB_PORT=3306
@@ -35,3 +36,17 @@ DB_CHARSET="utf8mb4"
 
 DATABASE_URL="${DB_TYPE}://${DB_USER}:${DB_PWD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?charset=${DB_CHARSET}"
 ```
+
+Créez la base de données avec la commande suivante :
+
+```bash
+php bin/console doctrine:database:create
+```
+
+### Créez un contrôleur avec une méthode `index` pour la majeure partie du frontend de votre application
+
+```bash
+php bin/console make:controller MainController
+```
+
+Donnez le nom `homepage` à cet index et la racine de votre site.
