@@ -12,9 +12,14 @@ Vous devez créer un site avec un template `Twig` responsive avec au minimum :
 
 **Front End**
 - Un menu sur toutes les pages Front End avec retour à l'accueil, les sections cliquables (via le slug !), et le bouton 'Connexion'
-- Une page d'accueil
-- Une page par section
+- Une page d'accueil, avec les 10 derniers articles publiés, avec l'affichage du titre, de l'auteur, de la date de publication, des sections clickables s'il y en a, les 300 premiers caractères du texte de l'article, il y a un bouton `Lire la suite` qui utilise le `slug` de l'article pour afficher l'article complet.
+
+- Une page par section, via son slug, affiche le titre de la section et le détail (s'il y en a un), puis TOUS les articles de cette section, avec l'affichage du titre, des sections clickables s'il y en a, de l'auteur, de la date de publication et 200 premiers caractères du texte de l'article, il y a un bouton `Lire la suite` qui utilise le `slug` de l'article pour afficher l'article complet.
 - Une page avec l'article complet
+  - Titre
+  - Auteur + date
+  - Sections clickables s'il y en a
+  - Article complet avec retour à la ligne
 - Un formulaire de connexion
 
 **Back End**
