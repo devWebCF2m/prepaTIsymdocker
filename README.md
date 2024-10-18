@@ -262,11 +262,11 @@ Mots de passe hachés ! Utilisation de `Slugify` pour le `username`, `Faker` pou
 
 
 #### Il nous faut 160 articles  
-Utilisation de `Faker` pour le titre, puis `slugify` pour TitleSlug à partir du titre, `Faker` pour le texte, une date entre 20 et 50 jours pour la date de création, une date entre 1 et 15 pour la date de publication si l'article est publié (3 chances sur 4), un auteur aléatoire (dans `ROLE_ADMIN` ou `ROLE_REDAC`.
+Utilisation de `Faker` pour le titre, puis `slugify` pour TitleSlug à partir du titre, `Faker` pour le texte, une date entre 20 et 50 jours pour la date de création, une date entre 1 et 15 pour la date de publication si l'article est publié (3 chances sur 4), un auteur aléatoire (dans `ROLE_ADMIN` ou `ROLE_REDAC`).
 
-- 1 `ROLE_ADMIN` avec comme login et mot de passe `admin` et `admin` actif,
-- 5 `ROLE_REDAC` avec comme login et mot de passe `redac{1 à 5}` et `redac1{1 à 5}`  correspondants et actifs
-- 24 `ROLE_USER` avec l'utilisation de `Faker` pour les logins et mots de passe et 3 sur 4 actifs ! Ne peuvent pas écrire d'articles !
+#### Il nous faut 6 sections
+Utilisation de `Faker` pour le titre, puis `slugify` pour SectionSlug à partir du titre, `Faker` pour le texte.
+Il faut ajouter au hasard entre 2 et 40 articles par section
 
 
 ### Choisissez un template et utiliser le sur votre projet
