@@ -6,6 +6,23 @@ Ce repository contient les consignes pour le **TP** de préparation à l'install
 
 ## Gardez ce répertoire ouvert dans un onglet de votre navigateur
 
+## Objectifs Symfony
+
+Vous devez créer un site avec un template `Twig` responsive avec au minimum :
+
+**Front End**
+- Un menu sur toutes les pages Front End avec retour à l'accueil, les sections cliquables (via le slug !), et le bouton 'Connexion'
+- Une page d'accueil
+- Une page par section
+- Une page avec l'article complet
+- Un formulaire de connexion
+
+**Back End**
+- Connexion en tant que `ROLE_ADMIN`
+- Une page d'accueil
+- Un `CRUD` fonctionnel sur `Article`
+- Un bouton de déconnexion
+
 ## Préparation
 - Vérifiez que vous avez bien installé `Docker` sur votre machine
 - Vérifiez que `composer` est sur votre machine
