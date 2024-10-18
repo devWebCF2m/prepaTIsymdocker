@@ -240,8 +240,19 @@ composer require fakerphp/faker
 
 Documentation : https://fakerphp.org/
 
+#### Importez Slugify :
+
+```bash
+composer require cocur/slugify
+```
+
+Documentation : https://packagist.org/packages/fakerphp/faker
+
+
+### Créez les fixtures :
 
 Dans le fichier `src/DataFixtures/AppFixtures.php` :
+
 
 
 
