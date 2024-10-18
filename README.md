@@ -199,5 +199,5 @@ COLLATE = utf8mb4_unicode_ci;
 
 ### Base de donnée minimale :
 
-[base de donnée minimale](https://raw.githubusercontent.com/devWebCF2m/prepaTIsymdocker/refs/heads/main/datas/sym64michael.png)
+![base de donnée minimale](https://raw.githubusercontent.com/devWebCF2m/prepaTIsymdocker/refs/heads/main/datas/sym64michael.png)
 
