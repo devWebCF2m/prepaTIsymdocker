@@ -223,3 +223,27 @@ COLLATE = utf8mb4_unicode_ci;
 
 ![base de donnée minimale](https://raw.githubusercontent.com/devWebCF2m/prepaTIsymdocker/refs/heads/main/datas/sym64michael.png)
 
+### Créez une Fixture pour toutes les entités :
+
+
+#### Installez le package `orm-fixtures` :
+
+```bash
+composer require orm-fixtures --dev 
+```
+
+#### Importez Faker :
+
+```bash
+composer require fakerphp/faker
+ ```
+
+Documentation : https://fakerphp.org/
+
+
+Dans le fichier `src/DataFixtures/AppFixtures.php` :
+
+
+
+### Choisissez un template et utiliser le sur votre projet
+
