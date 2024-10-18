@@ -2,13 +2,13 @@
 
 ## Repository de consignes
 
-Ce repository contient les consignes pour le TP de préparation à l'installation de Symfony avec Docker.
+Ce repository contient les consignes pour le **TP** de préparation à l'installation de `Symfony LTS` avec `Docker`.
 
 ## Gardez ce répertoire ouvert dans un onglet de votre navigateur
 
 ## Préparation
 - Vérifiez que vous avez bien installé `Docker` sur votre machine
-- Vérifiez que `composer est sur votre machine
+- Vérifiez que `composer` est sur votre machine
 - utilisez l'installateur de `Symfony` pour créer un nouveau projet Symfony
 
 ## Consignes
@@ -49,7 +49,7 @@ php bin/console doctrine:database:create
 php bin/console make:controller
 ```
 
-Donnez le nom `homepage` à cet index et la racine de votre site.
+Donnez le nom `homepage` à cet index et il doit pointer vers la racine de votre site (127.0.0.1:8000 généralement).
 
 ### Créez un User avec la commande suivante :
 
