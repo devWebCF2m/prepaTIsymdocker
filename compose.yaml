@@ -1,20 +1,47 @@
-
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-16}-alpine
+  mysql:
+    image: mysql:8.0
+    restart: on-failure
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
+      MYSQL_ALLOW_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: sym64michael
     volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+  nginx:
+      image: nginx:latest
+      ports:
+        - "8080:80"
+      volumes:
+        - './public/:usr/src/app'
+        - './docker/nginx:/etc/nginx/conf.d/'
+      depends_on:
+        - php
+#  adminer:
+#      image: adminer
+#      restart: always
+#      ports:
+#        - '8081:8080'
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "8081:80"
+
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - './public/:/usr/src/app'
+    restart: on-failure
+    env_file:
+      - .env
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+  mysql_data:
+networks:
+  app-network:
