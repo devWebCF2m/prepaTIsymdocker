@@ -14,7 +14,7 @@ services:
       ports:
         - "8080:80"
       volumes:
-        - './public/:usr/src/app'
+        - './public/:/usr/src/app'
         - './docker/nginx:/etc/nginx/conf.d/'
       depends_on:
         - php
