@@ -3,43 +3,50 @@ services:
     image: mysql:8.0
     restart: on-failure
     environment:
-      MYSQL_ALLOW_ROOT_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: sym64michael
+    ports:
+      - 3306:3306
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - app-network
-  nginx:
-      image: nginx:latest
-      ports:
-        - "8080:80"
-      volumes:
-        - './public/:/usr/src/app'
-        - './docker/nginx:/etc/nginx/conf.d/'
-      depends_on:
-        - php
-#  adminer:
-#      image: adminer
-#      restart: always
-#      ports:
-#        - '8081:8080'
+
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
       PMA_HOST: mysql
     ports:
       - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
 
-
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - './:/usr/src/app'
+      - './docker/nginx:/etc/nginx/conf.d/'
+    depends_on:
+      - php
+    networks:
+      - app-network
   php:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
     volumes:
-      - './public/:/usr/src/app'
+      - './:/usr/src/app'
     restart: on-failure
     env_file:
       - .env
+    networks:
+      - app-network
+
 
 volumes:
   mysql_data:

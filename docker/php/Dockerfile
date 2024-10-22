@@ -28,9 +28,10 @@ COPY composer.lock /usr/src/app/composer.lock
 RUN PATH=$PATH:/usr/src/app/vendor/bin:bin
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-
-RUN composer install --no-scripts
-
 COPY . /usr/src/app
+
+RUN composer install
+
+
 
 #RUN chown -R 1000:1000 /usr/src/app
