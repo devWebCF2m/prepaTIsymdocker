@@ -148,6 +148,7 @@ CREATE TABLE IF NOT EXISTS `sym64michael`.`article` (
   `article_date_posted` DATETIME NULL DEFAULT NULL,
   `published` TINYINT(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_23A0E66D347411D` (`title_slug`),
   INDEX `IDX_23A0E66A76ED395` (`user_id` ASC) VISIBLE,
   CONSTRAINT `FK_23A0E66A76ED395`
     FOREIGN KEY (`user_id`)
@@ -174,7 +175,8 @@ CREATE TABLE IF NOT EXISTS `sym64michael`.`section` (
   `section_title` VARCHAR(100) NOT NULL,
   `section_slug` VARCHAR(105) NOT NULL,
   `section_detail` VARCHAR(500) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_2D737AEF1D237769` (`section_slug`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;

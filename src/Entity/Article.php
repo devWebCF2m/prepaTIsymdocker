@@ -19,7 +19,7 @@ class Article
     #[ORM\Column(length: 160)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 162)]
+    #[ORM\Column(length: 162,unique: true)]
     private ?string $titleSlug = null;
 
     #[ORM\Column(type: Types::TEXT)]

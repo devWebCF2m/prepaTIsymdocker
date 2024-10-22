@@ -18,7 +18,7 @@ class Section
     #[ORM\Column(length: 100)]
     private ?string $sectionTitle = null;
 
-    #[ORM\Column(length: 105)]
+    #[ORM\Column(length: 105,unique: true)]
     private ?string $sectionSlug = null;
 
     #[ORM\Column(length: 500, nullable: true)]
