@@ -248,7 +248,7 @@ Documentation : https://fakerphp.org/
 composer require cocur/slugify
 ```
 
-Documentation : https://packagist.org/packages/fakerphp/faker
+Documentation : https://github.com/cocur/slugify
 
 
 ### Créez les fixtures :
