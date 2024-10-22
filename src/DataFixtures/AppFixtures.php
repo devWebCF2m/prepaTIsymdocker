@@ -28,9 +28,41 @@ class AppFixtures extends Fixture
         $user = new User();
         $user->setUsername('admin');
         $user->setPassword($this->passwordEncoder->hashPassword($user, 'admin'));
+        $user->setRoles(['ROLE_ADMIN']);
         $user->setFullname('Michaël Pitz');
         $user->setEmail($faker->email());
+        $user->setUniqid(uniqid("user_", true));
+        $user->setActivate(true);
+        $users[] = $user;
         $manager->persist($user);
+
+        // redac
+        for ($i=1;$i<=5;$i++){
+            $user = new User();
+            $user->setUsername('redac'.$i);
+            $user->setPassword($this->passwordEncoder->hashPassword($user, 'redac'.$i));
+            $user->setRoles(['ROLE_REDAC']);
+            $user->setFullname($faker->name());
+            $user->setEmail($faker->email());
+            $user->setUniqid(uniqid("user_", true));
+            $user->setActivate(true);
+            $users[] = $user;
+            $manager->persist($user);
+        }
+
+        // user
+        for($i=1;$i<=24;$i++){
+            $user = new User();
+            $user->setUsername('user'.$i);
+            $user->setPassword($this->passwordEncoder->hashPassword($user, 'user'.$i));
+            $user->setRoles(['ROLE_USER']);
+            $user->setFullname($faker->name());
+            $user->setEmail($faker->email());
+            $user->setUniqid(uniqid("user_", true));
+            $hasard = mt_rand(1,4)<4;
+            $user->setActivate($hasard);
+            $manager->persist($user);
+        }
 
         $manager->flush();
     }
