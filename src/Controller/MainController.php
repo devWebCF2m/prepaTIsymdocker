@@ -25,17 +25,26 @@ class MainController extends AbstractController
         ]);
     }
     #[Route('/categorie/{slug}', name: 'categorie')]
-    public function categorie(Request $request,$slug, EntityManagerInterface $entityManager): Response
+    public function categorie($slug, EntityManagerInterface $entityManager): Response
     {
         // récupération de toutes les catégories pour le menu
         $categories = $entityManager->getRepository(Section::class)->findAll();
         // récupération de la catégorie dont le slug est $category_slug
         $categorie = $entityManager->getRepository(Section::class)->findOneBy(['sectionSlug' => $slug]);
         // récupération des articles de la catégorie grâce à la relation ManyToMany de categorie vers articles puis prises de valeurs
-        $articles = $categorie->getArticles()->getValues();
-        // on retire le slug de l'article pour le retour à l'article après connexion
-        $request->getSession()->set('slug', false);
-        return $this->render('public/categorie.html.twig', [
+        $articles = $entityManager->createQueryBuilder()
+            ->select('a')
+            ->from(Article::class, 'a')
+            ->join('a.sections', 's') // Assurez-vous que 'sections' est le bon nom de la relation
+            ->where('a.published = :published')
+            ->andWhere('s.id = :categoryId')
+            ->setParameter('published', true)
+            ->setParameter('categoryId', $categorie->getId())
+            ->orderBy('a.articleDatePosted', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('main/categorie.html.twig', [
             // on envoie la catégorie à la vue
             'categories' => $categories,
             'categorie' => $categorie,
@@ -44,52 +53,17 @@ class MainController extends AbstractController
     }
 
     #[Route('/article/{slug}', name: 'article', methods: ['GET', 'POST'])]
-    public function article(Request $request, $slug, EntityManagerInterface $entityManager): Response
+    public function article($slug, EntityManagerInterface $entityManager): Response
     {
         // récupération de toutes les catégories pour le menu
-        $categories = $entityManager->getRepository(Categorie::class)->findAll();
+        $categories = $entityManager->getRepository(Section::class)->findAll();
         // récupération de l'article dont le slug est $slug
-        $article = $entityManager->getRepository(Article::class)->findOneBy(['ArticleSlug' => $slug]);
-        // récupération des commentaires de l'article grâce à son id, triés par date de création décroissante
-        $commentaires = $entityManager->getRepository(Commentaire::class)
-            ->findBy(['CommentaireManyToOneArticle' => $article->getId()], ['CommentaireDateCreate' => 'DESC']);
-
-        // si l'utilisateur est connecté
-        if ($this->getUser()) {
-            // Récupérer l'utilisateur connecté
-            $user = $this->getUser();
-
-            $commentaire = new Commentaire();
-            // on lie le commentaire à l'article
-            $commentaire->setCommentaireManyToOneArticle($article);
-            // on ne publie pas le commentaire par défaut
-            $commentaire->setCommentaireIsPublished(false);
-            // on lie le commentaire à l'utilisateur
-            $commentaire->setUtilisateur($user);
-            // on crée le formulaire
-            $form = $this->createForm(CommentaireArticleType::class, $commentaire);
-            $form->handleRequest($request);
-
-            // si le formulaire est soumis et valide
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager->persist($commentaire);
-                $entityManager->flush();
-
-                return $this->redirectToRoute('article', ['slug'=>$slug], Response::HTTP_SEE_OTHER);
-            }
-        } else {
-            $form = null;
-            // on garde le slug de l'article pour le retour à l'article après connexion
-            $request->getSession()->set('slug', $slug);
-        }
+        $article = $entityManager->getRepository(Article::class)->findOneBy(['titleSlug' => $slug]);
 
 
-        return $this->render('public/article.html.twig', [
+        return $this->render('main/article.html.twig', [
             'categories' => $categories,
             'article' => $article,
-            'form' => $form,
-            // on envoie les commentaires à la vue
-            'commentaires' => $commentaires,
         ]);
     }
 }

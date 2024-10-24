@@ -26,9 +26,9 @@
     {% block header %}
         <!-- Header-->
         <header class="bg-dark py-5">
-            <div class="container px-5">
+            <div class="container px-8">
                 <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-{% block sizeTitle %}6{% endblock %}">
                         <div class="text-center my-5">
                             <h1 class="display-5 fw-bolder text-white mb-2">{%block htitle %}Present your business in a whole new way{% endblock %}</h1>
                             <p class="lead text-white-50 mb-4">{%block hdesc %}Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!{% endblock %}</p>
@@ -67,7 +67,7 @@
     {% block footer %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; MonSite {{ "now"|date('Y') }} - <a href="https://www.cf2m.be/home" target="_blank">Pour le CF2m</a></p></div>
+            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; TI Symfony 6.4 {{ "now"|date('Y') }} - <a href="https://www.cf2m.be/home" target="_blank">Pour le CF2m</a></p></div>
         </footer>
         {% endblock %}
 {% endblock %}

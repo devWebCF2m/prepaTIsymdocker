@@ -68,7 +68,7 @@ class AppFixtures extends Fixture
         for($i=1;$i<=160;$i++){
             $article = new Article();
             $article->setTitle($faker->sentence(6));
-            $article->setText($faker->text(2000));
+            $article->setText($faker->paragraphs(6, true));
             $article->setTitleSlug($slugify->slugify($article->getTitle()));
             $article->setArticleDateCreate($faker->dateTimeBetween('-6 months'));
             $hasard = mt_rand(1,4)<4;
@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
         // Section
         for ($i=1;$i<=6;$i++){
             $section = new Section();
-            $section->setSectionTitle($faker->sentence(3));
+            $section->setSectionTitle($faker->sentence(2, true));
             $section->setSectionSlug($slugify->slugify($section->getSectionTitle()));
             $section->setSectionDetail($faker->text(490));
             $hasard = mt_rand(2,40);

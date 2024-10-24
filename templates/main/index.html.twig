@@ -6,14 +6,11 @@
     {% include 'main/menu.html.twig' %}
 {% endblock %}
 
-{%block htitle %}Site TI minimal sur Symfony 64{% endblock %}
-{%block hdesc %}Pour les webdevs du CF2m{% endblock %}
+{%block htitle %}Site TI minimal sur Symfony 6.4 LTS{% endblock %}
+{%block hdesc %}Pour les webdevs du CF2m 2024{% endblock %}
 
 {% block boutonshauts %}
-    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="https://github.com/mikhawa/symfony-2023-05-10" target="_blank">Projet sur github</a>
-        <a class="btn btn-outline-light btn-lg px-4" href="https://www.cf2m.be/home" target="_blank">Pour le CF2m</a>
-    </div>
+
 {% endblock %}
 
 {% block articlePerOne %}
@@ -21,10 +18,20 @@
     <div class="col-lg-4 mb-5 mb-lg-0">
         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
         <h2 class="h4 fw-bolder">{{ article.Title }}</h2>
-        <p>{{ article.Text|u.truncate(120, '...', false)|striptags }}</p>
+        <p>{{ article.User.fullname }} le {{ article.articleDatePosted|date("d/m/Y \à H:i") }}</p>
+        {% for section in article.sections %}
+            {% if loop.first %}<p>Sections: {% endif %}
+            <a href="{{ path("categorie", { 'slug' :  section.sectionSlug }) }}">{{ section.sectionTitle }}</a>
+            {% if not loop.last %} | {% endif %}
+            {% if loop.last %}</p>{% endif %}
+            {% else %}
+            <p>Pas de section</p>
+        {% endfor %}
+        <p>{{ article.Text|u.truncate(300, '...', false)|striptags }}</p>
+
         <a class="text-decoration-none" href="{{ path("article", { 'slug' :  article.titleSlug }) }}">
             Lire la suite
-            <i class="bi bi-arrow-right"></i>
+            <i class="bi bi-arrow-right"></i><p></p>
         </a>
     </div>
     {% endfor %}
