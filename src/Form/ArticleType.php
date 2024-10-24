@@ -31,7 +31,7 @@ class ArticleType extends AbstractType
             ])
             ->add('sections', EntityType::class, [
                 'class' => Section::class,
-                'choice_label' => 'id',
+                'choice_label' => 'sectionTitle',
                 'multiple' => true,
                 'expanded' => true,
             ])
