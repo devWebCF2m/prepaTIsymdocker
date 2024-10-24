@@ -8,7 +8,7 @@ Ce repository contient les consignes pour le **TP** de préparation à l'install
 
 ## Site de référence
 
-Voici le lien vers la version minimale demandée pour ce TI : [sym64michael](https://sym6.cf2m.be/)
+Voici le lien vers la version minimale demandée pour ce TI : [sym64michael](https://sym64simple.cf2m.be/)
 
 ## Objectifs Symfony
 
