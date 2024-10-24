@@ -1,0 +1,42 @@
+{% extends 'public.template.html.twig' %}
+
+{% block title %}{{ parent() }} Connexion{% endblock %}
+{% block menuLinks %}
+    {% include 'main/menu.html.twig' %}
+{% endblock %}
+
+{%block htitle %}Connexion{% endblock %}
+{%block hdesc %}Veuillez vous connecter à votre compte.{% endblock %}
+{% block boutonshauts %}{% endblock %}
+
+{% block articlePerOne %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Vous êtes connecté {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
+    <label for="inputEmail">Votre mail</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Votre mot de passe</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <label>
+        <input type="checkbox" name="_remember_me" checked>
+        Rester connecté
+    </label>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Connexion
+    </button>
+</form>
+
+{% endblock %}

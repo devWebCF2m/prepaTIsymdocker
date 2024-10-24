@@ -6,6 +6,10 @@ Ce repository contient les consignes pour le **TP** de préparation à l'install
 
 ## Gardez ce répertoire ouvert dans un onglet de votre navigateur
 
+## Site de référence
+
+Voici le lien vers la version minimale demandée pour ce TI : [sym64michael](https://sym6.cf2m.be/)
+
 ## Objectifs Symfony
 
 Vous devez créer un site avec un template `Twig` responsive avec au minimum :
@@ -273,3 +277,8 @@ Il faut ajouter au hasard entre 2 et 40 articles par section
 
 ### Choisissez un template et utiliser le sur votre projet
 
+Vous pouvez utiliser un template gratuit de votre choix, responsive, et utiliser `Twig` pour l'intégrer dans votre projet.
+
+### Créez un formulaire de connexion
+
+Pour le formulaire de connexion, vous pouvez utiliser le formulaire de base de `Symfony` ou un formulaire `Twig` avec les champs `username` et `password` et un bouton `Connexion`.
