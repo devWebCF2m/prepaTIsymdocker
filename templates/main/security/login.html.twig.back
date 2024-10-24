@@ -23,7 +23,7 @@
 
     <h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
     <label for="inputEmail">Votre mail</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <input type="text" value="{{ last_username }}" name="username" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     <label for="inputPassword">Votre mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
     <label>
