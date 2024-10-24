@@ -1,37 +1,42 @@
-{% extends 'base.html.twig' %}
+{% extends 'public.template.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ parent() }} Connexion{% endblock %}
+{% block menuLinks %}
+    {% include 'main/menu.html.twig' %}
+{% endblock %}
 
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+{%block htitle %}Connexion{% endblock %}
+{%block hdesc %}Veuillez vous connecter à votre compte.{% endblock %}
+{% block boutonshauts %}{% endblock %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+{% block articlePerOne %}
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        {% if app.user %}
+            <div class="mb-3">
+                Vous êtes connecté {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% endif %}
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    <div class="checkbox mb-3">
+        <h1 class="h3 mb-3 font-weight-normal">Connectez-vous</h1>
+        <label for="inputEmail">Votre mail</label>
+        <input type="text" value="{{ last_username }}" name="username" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <label for="inputPassword">Votre mot de passe</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
         <label>
-            <input type="checkbox" name="_remember_me"> Remember me
+            <input type="checkbox" name="_remember_me" checked>
+            Rester connecté
         </label>
-    </div>
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+        <button class="btn btn-lg btn-primary" type="submit">
+            Connexion
+        </button>
+    </form>
+
 {% endblock %}
