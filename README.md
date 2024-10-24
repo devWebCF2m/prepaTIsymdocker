@@ -264,7 +264,7 @@ Mots de passe hachés ! Utilisation de `Slugify` pour le `username`, `Faker` pou
 
 
 #### Il nous faut 160 articles  
-Utilisation de `Faker` pour le titre, puis `slugify` pour TitleSlug à partir du titre, `Faker` pour le texte, une date entre 20 et 50 jours pour la date de création, une date entre 1 et 15 pour la date de publication si l'article est publié (3 chances sur 4), un auteur aléatoire (dans `ROLE_ADMIN` ou `ROLE_REDAC`).
+Utilisation de `Faker` pour le titre, puis `slugify` pour TitleSlug à partir du titre, `Faker` pour le texte, une date **entre 6 mois et maintenant** pour la date de **création**, **une date après la date de création pour la date de publication si l'article est publié (3 chances sur 4)** (voir `$faker->dateTimeBetween`), un auteur aléatoire (dans `ROLE_ADMIN` ou `ROLE_REDAC`).
 
 #### Il nous faut 6 sections
 Utilisation de `Faker` pour le titre, puis `slugify` pour SectionSlug à partir du titre, `Faker` pour le texte.
