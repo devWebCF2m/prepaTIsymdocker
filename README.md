@@ -259,8 +259,8 @@ Dans le fichier `src/DataFixtures/AppFixtures.php` :
 Mots de passe hachés ! Utilisation de `Slugify` pour le `username`, `Faker` pour le `fullname` et `email` :
 
 - 1 `ROLE_ADMIN` avec comme login et mot de passe `admin` et `admin` actif, 
-- 5 `ROLE_REDAC` avec comme login et mot de passe `redac{1 à 5}` et `redac1{1 à 5}`  correspondants et actifs
-- 24 `ROLE_USER` avec l'utilisation de `Faker` pour les logins et mots de passe et 3 sur 4 actifs ! Ne peuvent pas écrire d'articles !
+- 5 `ROLE_REDAC` avec comme login et mot de passe `redac{1 à 5}` et `redac{1 à 5}`  correspondants et actifs
+- 24 `ROLE_USER` avec comme login et mot de passe `user{1 à 24}` et `user{1 à 24}` et **3 sur 4 actifs** ! Ne peuvent pas écrire d'articles !
 
 
 #### Il nous faut 160 articles  
