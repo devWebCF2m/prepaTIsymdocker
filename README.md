@@ -282,3 +282,8 @@ Vous pouvez utiliser un template gratuit de votre choix, responsive, et utiliser
 ### Créez un formulaire de connexion
 
 Pour le formulaire de connexion, vous pouvez utiliser le formulaire de base de `Symfony` ou un formulaire `Twig` avec les champs `username` et `password` et un bouton `Connexion`.
+
+
+### Créez une administration
+
+Créez une administration avec un CRUD sur les articles, uniquement pour les utilisateurs avec le rôle `ROLE_ADMIN`.
