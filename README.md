@@ -25,8 +25,8 @@ Vous devez créer un site avec un template `Twig` responsive avec au minimum :
   - Titre
   - Auteur + date
   - Sections clickables s'il y en a
-  - Article complet avec retour à la ligne
-- Un bouton de conUn formulaire de connexion
+  - Article complet avec retour automatique à la ligne
+- Un bouton de connexion vers le formulaire de connexion
 
 **Back End**
 - Connexion simple pour les utilisateurs
@@ -329,7 +329,7 @@ Ce **TI** est déjà assez complet (dans le temps qui vous est donné) pour vér
 
 https://sym6.cf2m.be/
 
-
+- Tout ce que vous souhaitez essayer dans le temps imparti !
 
 Installez des Bundles d'administration comme `EasyAdmin` ou `SonataAdmin` pour gérer les `CRUD` plus facilement.
 
