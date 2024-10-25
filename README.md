@@ -323,13 +323,13 @@ Ce **TI** est déjà assez complet (dans le temps qui vous est donné) pour vér
 
 - Permettez un `CRUD` sur les `Articles` pour les utilisateurs avec le rôle `ROLE_REDAC`, ! Mais uniquement sur les articles qu'ils ont écrits ! Ils ne peuvent créer des articles qu'avec leur `username` comme auteur !
 
-#### Niveau 3
+#### Niveaux 3 - 4
 
 - Tentez l'inscription par mail, les commentaires comme sur :
 
 https://sym6.cf2m.be/
 
-### Niveau 4
+
 
 Installez des Bundles d'administration comme `EasyAdmin` ou `SonataAdmin` pour gérer les `CRUD` plus facilement.
 
