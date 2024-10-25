@@ -17,7 +17,7 @@ Voici le lien vers la version minimale demandée pour ce **TI** : [sym64simple.c
 Vous devez créer un site avec un template `Twig` responsive avec au minimum :
 
 **Front End**
-- Un `menu` sur toutes les pages Front End avec `retour à l'accueil`, les `sections cliquables` (via le `slug` !), et le bouton `Connexion`
+- Un `menu` sur toutes les pages Front End avec `retour à l'accueil`, les `sections cliquables` (via le `slug` !), et le bouton `Connexion` (ou `Déconnexion` ainsi que `Administration` si connecté !)
 - Une `page d'accueil`, avec les `10 derniers articles publiés`, avec l'affichage du `titre`, de l'`auteur`, de la `date de publication`, des `sections clickables` (s'il y en a), les **300** premiers caractères du `texte` de l'article (non coupés !), et un bouton `Lire la suite` qui utilise le `slug` de l'article pour afficher l'article complet.
 
 - Une page par `section`, via son `slug`, affiche le `titre de la section` et le `détail` (s'il y en a un), puis `TOUS les articles de cette section`, avec l'affichage du `titre`, des `sections clickables` s'il y en a, de l'`auteur`, de la `date de publication` et **200** premiers caractères du `texte` de l'article (non coupés !), et un bouton `Lire la suite` qui utilise le `slug` de l'article pour afficher l'article complet.
@@ -26,12 +26,12 @@ Vous devez créer un site avec un template `Twig` responsive avec au minimum :
   - Auteur + date
   - Sections clickables s'il y en a
   - Article complet avec retour à la ligne
-- Un formulaire de connexion
+- Un bouton de conUn formulaire de connexion
 
 **Back End**
-- Connexion en tant que `ROLE_ADMIN`
-- Une page d'accueil
-- Un `CRUD` fonctionnel sur `Article`
+- Connexion simple pour les utilisateurs
+- Une page d'accueil d'administration avec un menu
+- Un `CRUD` fonctionnel sur `Article` **Uniquement pour les utilisateurs avec le rôle `ROLE_ADMIN`**
 - Un bouton de déconnexion
 
 ## Préparation
@@ -262,11 +262,11 @@ Documentation : https://github.com/cocur/slugify
 Dans le fichier `src/DataFixtures/AppFixtures.php` :
 
 #### Il nous faut 30 utilisateurs 
-Mots de passe hachés ! Utilisation de `Slugify` pour le `username`, `Faker` pour le `fullname` et `email` :
+Mots de passe hachés ! Utilisation de `Slugify` pour le `username`, `Faker` pour le `fullname` et `email`, le `password` doit être haché avec `UserPasswordHasherInterface` et le `uniqid` doit être généré avec `uniqid()` :
 
-- 1 `ROLE_ADMIN` avec comme login et mot de passe `admin` et `admin` actif, 
-- 5 `ROLE_REDAC` avec comme login et mot de passe `redac{1 à 5}` et `redac{1 à 5}`  correspondants et actifs
-- 24 `ROLE_USER` avec comme login et mot de passe `user{1 à 24}` et `user{1 à 24}` et **3 sur 4 actifs** ! Ne peuvent pas écrire d'articles !
+- **1** `ROLE_ADMIN` avec comme login et mot de passe `admin` et `admin` actif, 
+- **5** `ROLE_REDAC` avec comme login et mot de passe `redac{1 à 5}` et `redac{1 à 5}`  correspondants et actifs
+- **24** `ROLE_USER` avec comme login et mot de passe `user{1 à 24}` et `user{1 à 24}` et **3 sur 4 actifs** ! Ne peuvent pas écrire d'articles !
 
 
 #### Il nous faut 160 articles  
@@ -274,18 +274,66 @@ Utilisation de `Faker` pour le titre, puis `slugify` pour TitleSlug à partir du
 
 #### Il nous faut 6 sections
 Utilisation de `Faker` pour le titre, puis `slugify` pour SectionSlug à partir du titre, `Faker` pour le texte.
-Il faut ajouter au hasard entre 2 et 40 articles par section
+Il faut ajouter au **hasard entre 2 et 40 articles par section** !
 
 
 ### Choisissez un template et utiliser le sur votre projet
 
-Vous pouvez utiliser un template gratuit de votre choix, responsive, et utiliser `Twig` pour l'intégrer dans votre projet.
+Vous pouvez utiliser un template gratuit de votre choix, responsive, et utiliser `Twig` pour l'intégrer dans votre projet. N'utilisez pas le même template que l'exemple donné !
 
 ### Créez un formulaire de connexion
 
 Pour le formulaire de connexion, vous pouvez utiliser le formulaire de base de `Symfony` ou un formulaire `Twig` avec les champs `username` et `password` et un bouton `Connexion`.
 
+L'authentification se fera avec le `username` et le `password` de l'entité `User`.
+
 
 ### Créez une administration
 
 Créez une administration avec un CRUD sur les articles, uniquement pour les utilisateurs avec le rôle `ROLE_ADMIN`.
+
+Vous pouvez utiliser l'exemple donné pour savoir ce que vous devez faire pour obtenir le TI minimum :
+
+[sym64simple.cf2m.be](https://sym64simple.cf2m.be/)
+
+## Respectez les consignes
+
+Il y a peu de consignes, mais elles sont importantes :
+respectez les **AVANT** de faire les bonus !
+Je dois pouvoir vérifier le **TI** avec le rôle `ROLE_ADMIN`  que vous avez créé (`admin`, `admin`,).
+
+## Bonus
+
+Ce **TI** est déjà assez complet (dans le temps qui vous est donné) pour vérifier vos compétences de bases en `Symfony`, `Twig` et `Doctrine`, mais si vous avez du temps, vous pouvez ajouter des fonctionnalités supplémentaires :
+
+### Niveau 1
+
+**Back End**
+
+- Ajouter un `CRUD` fonctionnel sur les `Sections` pour les utilisateurs avec le rôle `ROLE_ADMIN`
+- Ajouter un `CRUD` fonctionnel sur les `Users` pour les utilisateurs avec le rôle `ROLE_ADMIN`
+
+**Front End**
+
+- Faites en sorte que les `fullname` soient cliquables et renvoient vers une page avec le détail du `User` et les  `articles` de cet `auteur`
+
+#### Niveau 2
+
+**Back End**
+
+- Permettez un `CRUD` sur les `Articles` pour les utilisateurs avec le rôle `ROLE_REDAC`, ! Mais uniquement sur les articles qu'ils ont écrits ! Ils ne peuvent créer des articles qu'avec leur `username` comme auteur !
+
+#### Niveau 3
+
+- Tentez l'inscription par mail, les commentaires comme sur :
+
+https://sym6.cf2m.be/
+
+### Niveau 4
+
+Installez des Bundles d'administration comme `EasyAdmin` ou `SonataAdmin` pour gérer les `CRUD` plus facilement.
+
+https://github.com/mikhawa/symfony-2023-05-10
+
+
+Bon boulot !
