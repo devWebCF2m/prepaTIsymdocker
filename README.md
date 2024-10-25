@@ -2,23 +2,25 @@
 
 ## Repository de consignes
 
-Ce repository contient les consignes pour le **TP** de préparation à l'installation de `Symfony LTS` avec `Docker`.
+Ce repository contient les consignes pour le **TI** de  l'installation de `Symfony LTS` avec `Docker`.
+
+La partie `Docker` vous sera donnée par Magib.
 
 ## Gardez ce répertoire ouvert dans un onglet de votre navigateur
 
 ## Site de référence
 
-Voici le lien vers la version minimale demandée pour ce TI : [sym64michael](https://sym64simple.cf2m.be/)
+Voici le lien vers la version minimale demandée pour ce **TI** : [sym64simple.cf2m.be](https://sym64simple.cf2m.be/)
 
 ## Objectifs Symfony
 
 Vous devez créer un site avec un template `Twig` responsive avec au minimum :
 
 **Front End**
-- Un menu sur toutes les pages Front End avec retour à l'accueil, les sections cliquables (via le slug !), et le bouton 'Connexion'
-- Une page d'accueil, avec les 10 derniers articles publiés, avec l'affichage du titre, de l'auteur, de la date de publication, des sections clickables s'il y en a, les 300 premiers caractères du texte de l'article, il y a un bouton `Lire la suite` qui utilise le `slug` de l'article pour afficher l'article complet.
+- Un `menu` sur toutes les pages Front End avec `retour à l'accueil`, les sections `cliquables` (via le `slug` !), et le bouton `Connexion`
+- Une `page d'accueil`, avec les `10 derniers articles publiés`, avec l'affichage du `titre`, de l'`auteur`, de la `date de publication`, des `sections clickables` (s'il y en a), les **300** premiers caractères du texte de l'article non coupés, il y a un bouton `Lire la suite` qui utilise le `slug` de l'article pour afficher l'article complet.
 
-- Une page par section, via son slug, affiche le titre de la section et le détail (s'il y en a un), puis TOUS les articles de cette section, avec l'affichage du titre, des sections clickables s'il y en a, de l'auteur, de la date de publication et 200 premiers caractères du texte de l'article, il y a un bouton `Lire la suite` qui utilise le `slug` de l'article pour afficher l'article complet.
+- Une page par `section`, via son slug, affiche le titre de la section et le détail (s'il y en a un), puis TOUS les articles de cette section, avec l'affichage du titre, des sections clickables s'il y en a, de l'auteur, de la date de publication et 200 premiers caractères du texte de l'article, il y a un bouton `Lire la suite` qui utilise le `slug` de l'article pour afficher l'article complet.
 - Une page avec l'article complet
   - Titre
   - Auteur + date
