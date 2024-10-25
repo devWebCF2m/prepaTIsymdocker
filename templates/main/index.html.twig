@@ -27,7 +27,7 @@
             {% else %}
             <p>Pas de section</p>
         {% endfor %}
-        <p>{{ article.Text|u.truncate(300, '...', false)|striptags }}</p>
+        <p>{{ article.text|u.truncate(300, '...', false)|striptags }}</p>
 
         <a class="text-decoration-none" href="{{ path("article", { 'slug' :  article.titleSlug }) }}">
             Lire la suite

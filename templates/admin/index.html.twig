@@ -20,9 +20,9 @@
             <h2 class="h4 fw-bolder">Administration des articles</h2>
             <p class="mb-0">Gestion des articles uniquement par un administrateur</p>
             {% if is_granted('ROLE_ADMIN') %}
-                <p><a class="btn btn-primary" href="{{ path('app_admin_article_index') }}">Gérer les articles</a></p>
+                <p class="mt-2"><a class="btn btn-primary" href="{{ path('app_admin_article_index') }}">Gérer les articles</a></p>
                 {% else %}
-                    <p><a class="btn btn-primary" href="{{ path('homepage') }}">Retour à l'accueil</a></p>
+                    <p class="mt-2"><a class="btn btn-primary" href="{{ path('homepage') }}">Retour à l'accueil</a></p>
             {% endif %}
 
 

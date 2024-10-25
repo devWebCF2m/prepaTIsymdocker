@@ -1,21 +1,21 @@
 {% extends 'public.template.html.twig' %}
 
-{% block title %}{{ parent() }} Administration{% endblock %}
+{% block title %}{{ parent() }} Administration | Tous Les Articles{% endblock %}
 
 {% block menuLinks %}
     {% include 'admin/back.menu.html.twig' %}
 {% endblock %}
 
-{%block htitle %}Administration | Articles{% endblock %}
+{%block htitle %}Administration | Tous Les Articles{% endblock %}
 {%block hdesc %}Liste des articles{% endblock %}
-
+{% block sizeTitle %}8{% endblock %}
 {% block boutonshauts %}
 
 {% endblock %}
 
 {% block articlePerOne %}
-    <h1>Article index</h1>
-
+    <h1>Liste des articles</h1>
+    <p class="mt-2"><a class="btn btn-success" href="{{ path('app_admin_article_new') }}">Ajouter un article</a></p>
     <table class="table">
         <thead>
             <tr>
@@ -35,13 +35,13 @@
                 <td>{{ article.id }}</td>
                 <td>{{ article.title }}</td>
                 <td>{{ article.titleSlug }}</td>
-                <td>{{ article.text }}</td>
+                <td>{{ article.text|u.truncate(250, '...', false)|striptags }}</td>
                 <td>{{ article.articleDateCreate ? article.articleDateCreate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ article.articleDatePosted ? article.articleDatePosted|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.published ? 'Yes' : 'No' }}</td>
+                <td>{{ article.published ? '<b>Oui</b>' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('app_admin_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">edit</a>
+                    <p><a class="btn btn-primary mt-2" href="{{ path('app_admin_article_show', {'id': article.id}) }}">Voir</a></p>
+                    <p><a class="btn btn-warning" href="{{ path('app_admin_article_edit', {'id': article.id}) }}">Modifier</a></p>
                 </td>
             </tr>
         {% else %}
@@ -52,5 +52,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_article_new') }}">Create new</a>
+    <p class="mt-2"><a class="btn btn-success" href="{{ path('app_admin_article_new') }}">Ajouter un article</a></p>
 {% endblock %}

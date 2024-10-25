@@ -1,12 +1,12 @@
 {% extends 'public.template.html.twig' %}
 
-{% block title %}{{ parent() }} Administration{% endblock %}
+{% block title %}{{ parent() }} Administration | Voir l'article{% endblock %}
 
 {% block menuLinks %}
     {% include 'admin/back.menu.html.twig' %}
 {% endblock %}
 
-{%block htitle %}Administration | Articles{% endblock %}
+{%block htitle %}Administration | Voir l'article{% endblock %}
 {%block hdesc %}Détail de l'article{% endblock %}
 
 {% block boutonshauts %}
@@ -14,7 +14,8 @@
 {% endblock %}
 
 {% block articlePerOne %}
-    <h1>Article</h1>
+    <h1>Détail de l'article</h1>
+    <p class="mt-2"><a class="btn btn-primary" href="{{ path('app_admin_article_index') }}">Retour à la liste</a></p>
 
     <table class="table">
         <tbody>
@@ -49,9 +50,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_article_index') }}">back to list</a>
+    <p class="mt-2"><a class="btn btn-primary" href="{{ path('app_admin_article_index') }}">Retour à la liste</a></p>
 
-    <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">edit</a>
+    <p><a class="btn btn-warning" href="{{ path('app_admin_article_edit', {'id': article.id}) }}">Modifier</a></p>
 
     {{ include('admin_article/_delete_form.html.twig') }}
 {% endblock %}
