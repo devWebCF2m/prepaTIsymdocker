@@ -20,6 +20,8 @@ class ArticleType extends AbstractType
             ->add('text')
             ->add('articleDateCreate', null, [
                 'widget' => 'single_text',
+                'empty_data' => date('Y-m-d H:i:s'),
+                'required' => false,
             ])
             ->add('articleDatePosted', null, [
                 'widget' => 'single_text',
