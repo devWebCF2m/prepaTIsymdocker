@@ -20,8 +20,10 @@ class DashboardController extends AbstractDashboardController
             return $this->redirectToRoute('app_login');
         // si administrateur
         }elseif (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
-            // redirection vers la page d'administration
-            return $this->redirectToRoute('homepage');
+            // affichage du dashboard
+            return $this->render('easyadmin/admin-dashboard.html.twig', [
+                'user' => $this->getUser()
+            ]);
         // si rédacteur
         }elseif (in_array('ROLE_REDAC', $this->getUser()->getRoles())) {
 

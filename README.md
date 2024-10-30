@@ -77,3 +77,28 @@ Nous allons commencer par donner 3 liens pour les 3 rôles à nos utilisateurs :
         }
 # ...
 ```
+
+### Création de la vue de `admin dashboard`
+
+```twig
+{# templates/easyadmin/admin-dashboard.html.twig #}
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block main %}
+    {# ... #}
+{% endblock main %}
+```
+
+Et dans `src/Controller/Admin/DashboardController.php` :
+
+```php
+// src/Controller/Admin/DashboardController.php
+# ...   
+        // si administrateur
+        }elseif (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+            // affichage du dashboard
+            return $this->render('easyadmin/admin-dashboard.html.twig', [
+                'user' => $this->getUser()
+            ]);
+# ...
+```
