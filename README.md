@@ -17,3 +17,11 @@ https://symfony.com/bundles/EasyAdminBundle/current/index.html
 ```bash
 composer require easycorp/easyadmin-bundle
 ```
+
+### Configuration du bundle
+
+Nous allons créer l'accueil de notre administration via la création du dashboard.
+
+```bash
+php bin/console make:admin:dashboard
+```
