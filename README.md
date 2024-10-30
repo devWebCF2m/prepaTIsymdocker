@@ -25,3 +25,21 @@ Nous allons créer l'accueil de notre administration via la création du dashboa
 ```bash
 php bin/console make:admin:dashboard
 ```
+
+### Suppression des fichiers inutiles
+
+Nous allons supprimer notre ancienne page d'accueil de l'administration et le contrôleur associé, ainsi que le CRUD de la table `Article`.
+
+- src/Controller/AdminArticleController.php
+- src/Controller/AdminController.php
+- templates/admin/back.menu.html.twig
+- templates/admin/index.html.twig
+- templates/admin_article/_delete_form.html.twig
+- templates/admin_article/_form.html.twig
+- templates/admin_article/edit.html.twig
+- templates/admin_article/index.html.twig
+- templates/admin_article/new.html.twig
+- templates/admin_article/show.html.twig
+
+Lorsque nous nous connecterons à l'administration, nous devrions voir un message de bienvenue de `EasyAdmin`.
+
