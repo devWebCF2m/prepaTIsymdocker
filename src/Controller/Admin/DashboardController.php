@@ -1,5 +1,5 @@
 <?php
-
+// src/Controller/Admin/DashboardController.php
 namespace App\Controller\Admin;
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -13,7 +13,22 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return parent::index();
+        // return parent::index();
+        // si non connecté
+        if($this->getUser() == null){
+            // redirection vers la page de connexion
+            return $this->redirectToRoute('app_login');
+        // si administrateur
+        }elseif (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+            // redirection vers la page d'administration
+            return $this->redirectToRoute('homepage');
+        // si rédacteur
+        }elseif (in_array('ROLE_REDAC', $this->getUser()->getRoles())) {
+
+        // si utilisateur
+        }else{
+
+        }
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //

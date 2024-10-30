@@ -43,3 +43,37 @@ Nous allons supprimer notre ancienne page d'accueil de l'administration et le co
 
 Lorsque nous nous connecterons à l'administration, nous devrions voir un message de bienvenue de `EasyAdmin`.
 
+### Affichage de l'administration
+
+Pour afficher l'administration, nous devons nous connecter à l'URL `/admin`.
+
+## Configuration de l'administration
+
+Nous allons maintenant configurer l'administration pour afficher les entités de notre application.
+
+Nous allons commencer par donner 3 liens pour les 3 rôles à nos utilisateurs :
+
+```php
+// src/Controller/Admin/DashboardController.php
+# ...
+#[Route('/admin', name: 'admin')]
+    public function index(): Response
+    {
+        // return parent::index();
+        // si non connecté
+        if($this->getUser() == null){
+            // redirection vers la page de connexion
+            return $this->redirectToRoute('app_login');
+        // si administrateur
+        }elseif (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+            // redirection vers la page d'administration
+            return $this->redirectToRoute('homepage');
+        // si rédacteur
+        }elseif (in_array('ROLE_REDAC', $this->getUser()->getRoles())) {
+
+        // si utilisateur
+        }else{
+
+        }
+# ...
+```
