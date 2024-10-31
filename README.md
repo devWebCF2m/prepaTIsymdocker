@@ -86,6 +86,7 @@ Nous allons commencer par donner 3 liens pour les 3 rôles à nos utilisateurs :
 
 {% block main %}
     {# ... #}
+    {{ dump(user) }}
 {% endblock main %}
 ```
 
@@ -100,5 +101,29 @@ Et dans `src/Controller/Admin/DashboardController.php` :
             return $this->render('easyadmin/admin-dashboard.html.twig', [
                 'user' => $this->getUser()
             ]);
+# ...
+```
+### Création du CRUD pour l'entité `Article`
+
+```bash
+php bin/console make:admin:crud
+```
+
+Qui nous crée `src/Controller/Admin/ArticleCrudController.php`.
+
+### Configuration de l'entité `Article`
+
+```php
+// src/Controller/Admin/ArticleCrudController.php
+# ...
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            IdField::new('id')->hideOnForm(),
+            TextField::new('titleSlug'),
+            TextEditorField::new('text'),
+            DateField::new('articleDatePosted'),
+        ];
+    }
 # ...
 ```
